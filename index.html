@@ -309,6 +309,23 @@ details.answers summary{cursor:pointer;font-family:var(--hand);font-size:21px;co
 .ans button{grid-row:1/span 2;grid-column:2;font:inherit;font-size:14px;color:var(--sanguine-deep);background:var(--field);border:1px solid var(--paper-line);border-radius:var(--radius);padding:6px 14px;cursor:pointer}
 .ans button:hover{border-color:var(--sanguine)}
 .flow-top .count.editing{color:var(--sanguine-deep)}
+/* help */
+.help-fab{position:fixed;right:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:60;display:inline-flex;align-items:center;gap:8px;background:var(--sanguine);color:#FBF7EE;border:0;border-radius:999px;padding:13px 20px;font:inherit;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 8px 24px rgba(32,28,23,.25)}
+.help-fab:hover{background:var(--sanguine-deep)}
+.help-fab svg{width:20px;height:20px}
+.help-panel{position:fixed;right:20px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:61;width:min(380px,calc(100vw - 40px));max-height:calc(100vh - 120px);overflow:auto;background:var(--card);border:1px solid var(--ink);border-radius:6px;box-shadow:0 20px 50px rgba(32,28,23,.28);padding:22px;display:grid;gap:12px}
+.help-panel h3{font-size:24px}
+.help-panel p{font-size:14.5px;color:var(--ink-soft)}
+.help-panel label{display:grid;gap:5px;font-size:14px;font-weight:500}
+.help-panel input,.help-panel textarea{width:100%;padding:10px 12px;border:1px solid var(--paper-line);border-radius:var(--radius);background:var(--field);font:inherit;font-size:15px;color:var(--ink)}
+.help-panel textarea{min-height:100px;resize:vertical}
+.help-panel input:focus,.help-panel textarea:focus{outline:1.5px solid var(--sanguine);border-color:var(--sanguine)}
+.help-close{position:absolute;top:10px;right:12px;background:none;border:0;font-size:24px;line-height:1;color:var(--ink-faint);cursor:pointer;padding:4px 8px}
+.help-or{font-size:13.5px;color:var(--ink-faint);border-top:1px dashed var(--paper-line);padding-top:10px}
+.help-msg{font-family:var(--hand);font-size:20px;min-height:1.2em}
+.help-msg.ok{color:var(--good)}.help-msg.bad{color:var(--sanguine)}
+@media (max-width:520px){.help-fab{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));padding:12px 16px}.help-panel{right:12px;left:12px;width:auto;bottom:calc(74px + env(safe-area-inset-bottom,0px))}}
+
 /* owner */
 .owner{background:var(--card);border:1px solid var(--ink);border-radius:var(--radius);padding:clamp(18px,3vw,28px);display:grid;gap:18px}
 .owner-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:flex-end}
@@ -447,7 +464,7 @@ footer .wordmark .dot{color:var(--sanguine)}
 <section id="move3" style="padding-top:8px">
   <div class="wrap">
     <div class="head">
-      <p class="eyebrow">Move 3 · on the day</p>
+      <p class="eyebrow">Move 3 · 16–19 November</p>
       <h2>Bring three things</h2>
     </div>
     <div class="bring">
@@ -493,8 +510,8 @@ footer .wordmark .dot{color:var(--sanguine)}
         <p class="eyebrow">Your facilitator</p>
         <h2 style="font-size:28px;margin-top:6px">Ravi Krishnan</h2>
         <p style="color:var(--sanguine-deep);font-family:var(--serif);font-style:italic;font-size:16px;margin-top:4px">Architect &amp; designer</p>
-        <p style="margin-top:12px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">33+ years in technology-led design, spanning enterprise software design, digital content and eLearning at IBM, Wipro and Suzlon. Ravi brings vast insights from his extensive experience in recruitment and career growth of designers .</p>
-        <p style="margin-top:8px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">An active member of Urban Sketchers Bengaluru, Ravi captures the city's built environment in a distinctive line-drawing style</p>
+        <p style="margin-top:12px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">33+ years in technology-led design, spanning enterprise software design, digital content and eLearning at IBM, Wipro and Suzlon.</p>
+        <p style="margin-top:8px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">An active member of Urban Sketchers Bengaluru, Ravi captures the city's built environment in a distinctive line-drawing style — the same practice this workshop is built around.</p>
         <p style="margin-top:8px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">B.Arch, NIT Trichy · M.Des, IDC School of Design, IIT Bombay · Executive MBA, IIM Lucknow.</p>
         <div style="margin-top:14px;display:flex;gap:20px;flex-wrap:wrap;font-size:14.5px">
           <a href="mailto:lravikrishnan@gmail.com" style="text-decoration:none;border-bottom:1px solid var(--paper-line);padding-bottom:2px">lravikrishnan@gmail.com</a>
@@ -508,18 +525,31 @@ footer .wordmark .dot{color:var(--sanguine)}
 <footer>
   <div class="wrap">
     <a class="wordmark" href="#top">Studio<span class="dot">·</span>to<span class="dot">·</span>Work</a>
-    <p>A career workshop for design students.</p>
+    <p>A career workshop for design students · <a href="#" id="helpFoot" style="color:var(--sanguine-deep)">Need help?</a></p>
   </div>
 </footer>
 
 </div>
+
+<button type="button" class="help-fab" id="helpFab" aria-expanded="false" aria-controls="helpPanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9.6 9.5a2.5 2.5 0 0 1 4.8.9c0 1.6-2.4 2.1-2.4 3.4M12 16.6h.01"/></svg>Need help?</button>
+<form class="help-panel" id="helpPanel" hidden novalidate aria-labelledby="helpTitle">
+  <button type="button" class="help-close" id="helpClose" aria-label="Close">×</button>
+  <h3 id="helpTitle">Need help?</h3>
+  <p>Stuck on the site, the prep or anything about the workshop? Send Ravi a note here and he'll reply by email.</p>
+  <label for="help_name">Your name<input type="text" id="help_name" autocomplete="name"></label>
+  <label for="help_email">Your email<input type="email" id="help_email" autocomplete="email"></label>
+  <label for="help_msg">Your question<textarea id="help_msg" placeholder="What do you need help with?"></textarea></label>
+  <button type="submit" class="btn" id="helpSend">Send to Ravi</button>
+  <p class="help-msg" id="helpStatus" aria-live="polite"></p>
+  <p class="help-or">Prefer email? Write to <span class="addr">lravikrishnan@gmail.com</span></p>
+</form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 (function(){
   const CONTACT="lravikrishnan@gmail.com";
   /* Paste the Google Apps Script web app URL between the quotes (ends in /exec). */
-  const SHEET_URL="https://script.google.com/macros/s/…/exec";
+  const SHEET_URL="https://script.google.com/macros/s/AKfycbwq4bzlJC4Ei2blbpHvmoCs_ER22zv7KXQYekqpH2p4afeWfRvhThOTzqU8EjenuzJFtw/exec";
   const postForm=async(fields)=>{
     if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(SHEET_URL))return false;
     try{const body=new URLSearchParams();for(const[k,v]of Object.entries(fields))body.append(k,Array.isArray(v)?v.join("; "):(v==null?"":String(v)));
@@ -1122,6 +1152,28 @@ Give up to 5 highlights, most important first. Every quote must appear verbatim 
       tr.addEventListener("click",tg);tr.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tg();}});tb.append(tr,det);});
     tbl.append(tb);wrap.append(tbl);
   }
+
+  /* ---------- help ---------- */
+  (function(){
+    const fab=$("#helpFab"),panel=$("#helpPanel"),status=$("#helpStatus");
+    const open=on=>{panel.hidden=!on;fab.setAttribute("aria-expanded",String(on));if(on){const who=store.get("stws-activity")||store.get("stws-questionnaire")||{};if(!$("#help_name").value)$("#help_name").value=who.name||"";if(!$("#help_email").value)$("#help_email").value=who.email||"";status.textContent="";status.className="help-msg";setTimeout(()=>($("#help_name").value?$("#help_msg"):$("#help_name")).focus(),30);}else fab.focus();};
+    fab.addEventListener("click",()=>open(panel.hidden));
+    $("#helpFoot").addEventListener("click",e=>{e.preventDefault();open(true);});
+    $("#helpClose").addEventListener("click",()=>open(false));
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!panel.hidden)open(false);});
+    panel.addEventListener("submit",async e=>{
+      e.preventDefault();
+      const name=$("#help_name").value.trim(),email=$("#help_email").value.trim(),msg=$("#help_msg").value.trim();
+      status.className="help-msg bad";
+      if(!msg){status.textContent="write your question first";$("#help_msg").focus();return;}
+      if(!/^\S+@\S+\.\S+$/.test(email)){status.textContent="add your email so Ravi can reply";$("#help_email").focus();return;}
+      const btn=$("#helpSend");btn.disabled=true;btn.textContent="Sending…";
+      const ok=await postForm({_subject:`Help request — ${name||email}`,form_type:"support",Name:name,Email:email,Question:msg,Page:(location.hash||"")});
+      btn.disabled=false;btn.textContent="Send to Ravi";
+      if(ok){status.className="help-msg ok";status.textContent="sent. Ravi will reply by email";$("#help_msg").value="";}
+      else{status.className="help-msg bad";status.replaceChildren("couldn't send just now. Please email ",el("a",{href:`mailto:${CONTACT}?subject=${encodeURIComponent("Studio to Work help")}&body=${encodeURIComponent(msg)}`,text:CONTACT}));}
+    });
+  })();
 })();
 </script>
 

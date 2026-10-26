@@ -508,7 +508,7 @@ footer .wordmark .dot{color:var(--sanguine)}
 (function(){
   const CONTACT="lravikrishnan@gmail.com";
   /* Paste the Google Apps Script web app URL between the quotes (ends in /exec). */
-  const SHEET_URL="PASTE_YOUR_WEB_APP_URL_HERE";
+  const SHEET_URL="https://script.google.com/macros/s/…/exec";
   const postForm=async(fields)=>{
     if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(SHEET_URL))return false;
     try{const body=new URLSearchParams();for(const[k,v]of Object.entries(fields))body.append(k,Array.isArray(v)?v.join("; "):(v==null?"":String(v)));

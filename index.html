@@ -326,6 +326,15 @@ details.answers summary{cursor:pointer;font-family:var(--hand);font-size:21px;co
 .help-msg.ok{color:var(--good)}.help-msg.bad{color:var(--sanguine)}
 @media (max-width:520px){.help-fab{right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));padding:12px 16px}.help-panel{right:12px;left:12px;width:auto;bottom:calc(74px + env(safe-area-inset-bottom,0px))}}
 
+.as-who{margin-left:auto;margin-right:14px;background:none;border:0;padding:0;font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+.as-who:hover{color:var(--sanguine-deep)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.fresh{background:none;border:0;padding:0;font:inherit;font-size:13.5px;color:var(--ink-soft);text-decoration:underline dotted;text-underline-offset:3px;cursor:pointer;white-space:nowrap}
+.fresh:hover{color:var(--sanguine-deep)}
+.fresh-bar{background:var(--warn-bg);border-top:1px solid var(--paper-line)}
+.fresh-bar .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding-block:12px;font-size:14.5px;color:var(--ink)}
+.fresh-bar .btn{padding:8px 14px;font-size:14px}
+@media (max-width:560px){.nav-right{gap:10px}.fresh{font-size:12.5px}.fresh-who{display:none}.nav-cta{padding:8px 11px;font-size:13px}.wordmark{font-size:17px}}
 /* owner */
 .owner{background:var(--card);border:1px solid var(--ink);border-radius:var(--radius);padding:clamp(18px,3vw,28px);display:grid;gap:18px}
 .owner-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:flex-end}
@@ -369,8 +378,14 @@ footer .wordmark .dot{color:var(--sanguine)}
   <div class="wrap">
     <nav>
       <a class="wordmark" href="#top">Studio<span class="dot">·</span>to<span class="dot">·</span>Work</a>
-      <a class="nav-cta" href="#move1" id="navCta">Start move 1</a>
+      <div class="nav-right"><button type="button" class="fresh" id="freshBtn" hidden>Start fresh</button><a class="nav-cta" href="#move1" id="navCta">Start move 1</a></div>
     </nav>
+  </div>
+  <div class="fresh-bar" id="freshBar" hidden>
+    <div class="wrap">
+      <span>Clear the answers saved on this device and start as a new student? Anything already sent to Ravi stays with him.</span>
+      <span class="btn-row"><button type="button" class="btn" id="freshYes">Clear and start fresh</button><button type="button" class="btn quiet" id="freshNo">Cancel</button></span>
+    </div>
   </div>
 </header>
 
@@ -510,8 +525,8 @@ footer .wordmark .dot{color:var(--sanguine)}
         <p class="eyebrow">Your facilitator</p>
         <h2 style="font-size:28px;margin-top:6px">Ravi Krishnan</h2>
         <p style="color:var(--sanguine-deep);font-family:var(--serif);font-style:italic;font-size:16px;margin-top:4px">Architect &amp; designer</p>
-        <p style="margin-top:12px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">33+ years in technology-led design, spanning enterprise software design, digital content and eLearning at IBM, Wipro and Suzlon. Ravi shall bring his vast experience in building, nurturing and growing design talent in diverse organizations and industry domains.</p>
-        <p style="margin-top:8px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">An active member of Urban Sketchers Bengaluru, Ravi captures the city's built environment in a distinctive line-drawing style.</p>
+        <p style="margin-top:12px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">33+ years in technology-led design, spanning enterprise software design, digital content and eLearning at IBM, Wipro and Suzlon.</p>
+        <p style="margin-top:8px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">An active member of Urban Sketchers Bengaluru, Ravi captures the city's built environment in a distinctive line-drawing style — the same practice this workshop is built around.</p>
         <p style="margin-top:8px;color:var(--ink-soft);font-size:15.5px;max-width:62ch">B.Arch, NIT Trichy · M.Des, IDC School of Design, IIT Bombay · Executive MBA, IIM Lucknow.</p>
         <div style="margin-top:14px;display:flex;gap:20px;flex-wrap:wrap;font-size:14.5px">
           <a href="mailto:lravikrishnan@gmail.com" style="text-decoration:none;border-bottom:1px solid var(--paper-line);padding-bottom:2px">lravikrishnan@gmail.com</a>
@@ -570,7 +585,7 @@ footer .wordmark .dot{color:var(--sanguine)}
       {h:"Last one: what would you ask a hiring manager?",p:"Optional.",f:[{k:"question",t:"area",l:"Your question"},{k:"portfolio_link",t:"url",l:"Portfolio link, if you have one"}]}
     ]},
     activity:{title:"Pre-workshop prep",label:"Do the prep",move:2,next:"#move3",nextLabel:"See what to bring",steps:[
-      {h:"Who's submitting?",f:[{k:"name",t:"text",l:"Your name",req:1,ac:"name"},{k:"email",t:"email",l:"Email",req:1,ac:"email"}]},
+      {h:"Who's submitting?",p:"Use the same email as move 1.",f:[{k:"name",t:"text",l:"Your name",req:1,ac:"name"},{k:"email",t:"email",l:"Email",req:1,ac:"email"}]},
       {time:"Task 1 · 45 minutes",h:"Find three places you'd want to work",p:"One obvious, one unexpected industry, one small studio.",stuck:1,f:[{k:"t1_obvious",t:"text",l:"The obvious one",req:1,ph:"Organisation · role · skill you lack"},{k:"t1_unexpected",t:"text",l:"The unexpected industry",req:1,ph:"Organisation · role · skill you lack"},{k:"t1_small",t:"text",l:"The small studio or startup",req:1,ph:"Organisation · role · skill you lack"}]},
       {time:"Task 2 · 45 minutes",h:"Pick your hero project",p:"The one that shows you best. 150 words.",guide:"t2_summary",f:[{k:"t2_title",t:"text",l:"Project title",req:1,ph:"What you designed, for whom, in what context",titleTip:1},{k:"t2_summary",t:"area",l:"Summary in 150 words",req:1,wc:150,tall:1,review:1},{k:"t2_link",t:"url",l:"Link to the project files"}]},
       {time:"Task 3 · 30 minutes",h:"Find one designer to learn from",p:"Someone doing the job you want. Draft a short note to them.",guide:"t3_msg",f:[{k:"t3_designer",t:"text",l:"Their name and profile link",req:1},{k:"t3_msg",t:"area",l:"Your draft message",req:1,wc:100,review:1}]},
@@ -587,7 +602,7 @@ footer .wordmark .dot{color:var(--sanguine)}
 
   function setStatus(move,done){
     const m=$("#m"+move),s=$("#s"+move); if(!m)return;
-    m.classList.toggle("done",done); s.textContent=done?"Done ✓":"Not started";
+    m.classList.toggle("done",done); s.textContent=done?"Done ✓":"Not started"; const mb=m.querySelector(".btn"); if(mb)mb.textContent=done?"View":"Start";
     const d1=$("#m1").classList.contains("done"),d2=$("#m2").classList.contains("done");
     const cta=$("#navCta");
     if(!d1){cta.textContent="Start move 1";cta.href="#move1";}
@@ -600,9 +615,13 @@ footer .wordmark .dot{color:var(--sanguine)}
     const SENT="stws-sent-"+kind;
     let data=store.get(DRAFT)||{},idx=0,editing=false;
     if(kind==="activity"){const q=store.get("stws-questionnaire")||{};for(const k of["name","email"])if(!data[k]&&q[k])data[k]=q[k];}
+    const qInfo=()=>{const q=store.get("stws-questionnaire")||{};return q.name&&q.email?q:null;};
+    let showId=!(kind==="activity"&&qInfo());
+    const STEPS=()=>showId?F.steps:F.steps.slice(1);
+    const syncId=()=>{if(kind==="activity"&&!showId){const q=qInfo();if(q){data.name=q.name;data.email=q.email;}else showId=true;}};
 
     function readStep(){
-      F.steps[idx].f.forEach(f=>{
+      STEPS()[idx].f.forEach(f=>{
         if(f.t==="radio"||f.t==="scale"){const c=root.querySelector(`input[name="${f.k}"]:checked`);data[f.k]=c?c.value:"";}
         else if(f.t==="check"){data[f.k]=[...root.querySelectorAll(`input[name="${f.k}"]:checked`)].map(i=>i.value);}
         else{const i=root.querySelector(`[name="${f.k}"]`);data[f.k]=i?i.value.trim():"";}
@@ -610,11 +629,11 @@ footer .wordmark .dot{color:var(--sanguine)}
       store.set(DRAFT,data);
     }
     function invalidAll(){
-      for(let i=0;i<F.steps.length;i++)for(const f of F.steps[i].f){const v=data[f.k];if(f.req&&(!v||(Array.isArray(v)&&!v.length)))return{i,f};if(f.t==="email"&&v&&!/^\S+@\S+\.\S+$/.test(v))return{i,f};}
+      for(let i=0;i<STEPS().length;i++)for(const f of STEPS()[i].f){const v=data[f.k];if(f.req&&(!v||(Array.isArray(v)&&!v.length)))return{i,f};if(f.t==="email"&&v&&!/^\S+@\S+\.\S+$/.test(v))return{i,f};}
       return null;
     }
     function invalid(){
-      for(const f of F.steps[idx].f){
+      for(const f of STEPS()[idx].f){
         const v=data[f.k];
         if(f.req&&(!v||(Array.isArray(v)&&!v.length)))return f;
         if(f.t==="email"&&v&&!/^\S+@\S+\.\S+$/.test(v))return f;
@@ -859,8 +878,10 @@ Give up to 5 highlights, most important first. Every quote must appear verbatim 
     }
 
     function renderStep(){
-      const s=F.steps[idx],n=F.steps.length;root.replaceChildren();
+      const s=STEPS()[idx],n=STEPS().length;root.replaceChildren();
       const top=el("div",{class:"flow-top"},[el("span",{class:"eyebrow",text:`Move ${F.move} · ${F.label}`}),el("span",{class:"count"+(editing?" editing":""),text:editing?`Editing · step ${idx+1} of ${n}`:`Step ${idx+1} of ${n}`})]);
+      syncId();
+      if(kind==="activity"&&!showId){const q=qInfo();const who=el("button",{type:"button",class:"as-who",title:"Not you? Change name or email",text:`as ${q.name} · not you?`});who.addEventListener("click",()=>{readStep();showId=true;idx=0;renderStep();focusHead();});top.insertBefore(who,top.lastChild);}
       const bar=el("div",{class:"bar"},el("i",{style:`width:${Math.round(idx/n*100)}%`}));
       const body=el("div",{class:"flow-body"});
       if(s.time)body.append(el("p",{class:"step-time",text:s.time}));
@@ -891,7 +912,7 @@ Give up to 5 highlights, most important first. Every quote must appear verbatim 
     function advance(btn){
       readStep();const bad=invalid();
       if(bad){root.querySelector(".err").textContent=bad.t==="email"&&data[bad.k]?"that email doesn't look right":`this one's needed: ${bad.l.toLowerCase()}`;const i=root.querySelector(`[name="${bad.k}"]`);if(i)i.focus();return;}
-      if(idx<F.steps.length-1){idx++;renderStep();focusHead();}else if(editing)saveEdit(btn);else submit(btn);
+      if(idx<STEPS().length-1){idx++;renderStep();focusHead();}else if(editing)saveEdit(btn);else submit(btn);
     }
     function saveEdit(btn){
       readStep();const bad=invalid();
@@ -927,7 +948,7 @@ Give up to 5 highlights, most important first. Every quote must appear verbatim 
     const showVal=f=>{const v=data[f.k];if(Array.isArray(v))return v.join(", ");if(f.t==="scale")return v?v+"/5":"";return String(v||"").replace(/\s+/g," ");};
     function answersList(){
       const ul=el("ul",{class:"ans"});
-      F.steps.forEach((st,i)=>{let t=st.f.map(showVal).filter(Boolean).join(" · ");if(t.length>90)t=t.slice(0,88)+"…";
+      STEPS().forEach((st,i)=>{let t=st.f.map(showVal).filter(Boolean).join(" · ");if(t.length>90)t=t.slice(0,88)+"…";
         const b=el("button",{type:"button",text:"Edit"});b.addEventListener("click",()=>{store.set(DRAFT+"-saved",{...data});editing=true;idx=i;renderStep();focusHead();});
         ul.append(el("li",{},[el("b",{text:st.h}),el("span",{text:t||"—"}),b]));});
       return el("details",{class:"answers"},[el("summary",{text:"your answers · edit any step and resubmit"}),ul]);
@@ -1153,6 +1174,17 @@ Give up to 5 highlights, most important first. Every quote must appear verbatim 
     tbl.append(tb);wrap.append(tbl);
   }
 
+
+  /* ---------- start fresh on a shared device ---------- */
+  (function(){
+    const btn=$("#freshBtn"),bar=$("#freshBar");
+    const keys=()=>{try{return Object.keys(localStorage).filter(k=>k.startsWith("stws"));}catch(e){return [];}};
+    const refresh=()=>{const has=keys().length>0;btn.hidden=!has;if(has){const n=String((store.get("stws-questionnaire")||{}).name||(store.get("stws-activity")||{}).name||"").trim().split(/\s+/)[0];btn.replaceChildren();if(n)btn.append(el("span",{class:"fresh-who",text:`Not ${n}? `}));btn.append("Start fresh");}else bar.hidden=true;};
+    refresh();setInterval(refresh,1500);
+    btn.addEventListener("click",()=>{bar.hidden=false;$("#freshYes").focus();});
+    $("#freshNo").addEventListener("click",()=>{bar.hidden=true;btn.focus();});
+    $("#freshYes").addEventListener("click",()=>{keys().forEach(k=>{try{localStorage.removeItem(k);}catch(e){}});window.scrollTo(0,0);location.reload();});
+  })();
   /* ---------- help ---------- */
   (function(){
     const fab=$("#helpFab"),panel=$("#helpPanel"),status=$("#helpStatus");
